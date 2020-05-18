@@ -1,0 +1,19 @@
+{
+    "$id": "app.core",
+    "$name": "app.core",
+    "$version": "1.0.0",
+    "$description": "Core application extensions and features",
+    "$references": [],
+    "features": {
+        "sidebar": [
+            {
+                "id": "app.sidebar.index",
+                "order": 100,
+                "icon": "folder",
+                "title": "APP.SIDEBAR.INDEX.LABEL",
+                "description": "APP.SIDEBAR.INDEX.TOOLTIP",
+                "route": "index"
+            }
+        ]
+    }
+}
