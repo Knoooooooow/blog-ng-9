@@ -6,6 +6,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MaterialModule } from 'src/app/material.module';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { IndexComponent } from '../index/index.component';
+// import { CoreModule } from 'src/app/shared/core.module';
 
 const routes: Routes = [
     {
@@ -30,7 +31,8 @@ const routes: Routes = [
     imports: [
         CommonModule,
         MaterialModule,
-        RouterModule.forChild(routes)
+        RouterModule.forChild(routes),
+        // CoreModule.forChild()
     ],
     exports: [LayoutComponent]
 })

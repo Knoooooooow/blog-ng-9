@@ -11,7 +11,7 @@
                 "order": 100,
                 "icon": "folder",
                 "title": "APP.SIDEBAR.INDEX.LABEL",
-                "description": "APP.SIDEBAR.INDEX.TOOLTIP",
+                "description": "APP.SIDE_BAR.INDEX.TOOLTIP",
                 "route": "index"
             }
         ]
