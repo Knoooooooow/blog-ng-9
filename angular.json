@@ -29,7 +29,8 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/app/ui/theme.scss"
+              "src/app/ui/theme.scss",
+              "src/assets/fonts/material-icons/material-icon.scss"
             ],
             "scripts": []
           },
