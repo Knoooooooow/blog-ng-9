@@ -10,8 +10,8 @@
                 "id": "app.sidebar.index",
                 "order": 100,
                 "icon": "folder",
-                "title": "APP.SIDEBAR.INDEX.LABEL",
-                "description": "APP.SIDE_BAR.INDEX.TOOLTIP",
+                "title": "首页",
+                "description": "首页",
                 "route": "index"
             }
         ]

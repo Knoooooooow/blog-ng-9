@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AppStore } from 'src/app/model/app/app-state';
+import { Store } from '@ngrx/store';
+import { SetSideBarStateAction } from 'src/app/store/actions/app-action';
 
 @Component({
     selector: 'app-nav-bar',
@@ -9,12 +12,12 @@ export class NavBarComponent implements OnInit {
 
     myColor: string;
 
-    constructor() { }
+    constructor(private store: Store<AppStore>) { }
 
     ngOnInit(): void {
     }
-    displayMenu(){
-        
+    displayMenu() {
+        this.store.dispatch(new SetSideBarStateAction(false));
     }
 
 }
