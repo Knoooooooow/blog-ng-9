@@ -4,10 +4,11 @@ import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppLayoutModule } from './components/layout/layout.module';
 import { ExtensionsService } from './services/extensions.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AppStoreModule } from './store/app-store.module';
+
+import { MaterialModule } from 'src/app/material.module';
 
 export function setupExtensions(appExtensionService: ExtensionsService): Function {
     return () => appExtensionService.load();
@@ -20,9 +21,9 @@ export function setupExtensions(appExtensionService: ExtensionsService): Functio
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
-        AppLayoutModule,
         HttpClientModule,
-        AppStoreModule
+        AppStoreModule,
+        MaterialModule
     ],
     providers: [
         {

@@ -19,10 +19,8 @@
     <!-- This fills the remaining space of the current row -->
     <span class="example-fill-remaining-space"></span>
 
-    <button class="more-vert-button nav-button" mat-icon-button [matMenuTriggerFor]="appMenu" matRipple [matRippleColor]="myColor">
-        <i class="material-icons">
-            more_vert
-        </i>
+    <button mat-icon-button [matMenuTriggerFor]="appMenu" matRipple [matRippleColor]="myColor">
+        <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #appMenu="matMenu">
         <button mat-menu-item>关于</button>

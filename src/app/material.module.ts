@@ -8,7 +8,8 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatIconModule } from '@angular/material/icon';
-
+import { MatListModule } from '@angular/material/list';
+import { MatInputModule } from '@angular/material/input';
 @NgModule({
     declarations: [],
     imports: [
@@ -20,7 +21,9 @@ import { MatIconModule } from '@angular/material/icon';
         MatSliderModule,
         MatSidenavModule,
         MatTreeModule,
-        MatIconModule
+        MatIconModule,
+        MatListModule,
+        MatInputModule
     ],
     exports: [
         MatToolbarModule,
@@ -31,7 +34,9 @@ import { MatIconModule } from '@angular/material/icon';
         MatSliderModule,
         MatSidenavModule,
         MatTreeModule,
-        MatIconModule
+        MatIconModule,
+        MatListModule,
+        MatInputModule
     ]
 })
 export class MaterialModule { }

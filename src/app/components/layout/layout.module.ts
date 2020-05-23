@@ -5,7 +5,7 @@ import { LayoutComponent } from './layout.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MaterialModule } from 'src/app/material.module';
 import { SideBarComponent } from './side-bar/side-bar.component';
-import { IndexComponent } from '../index/index.component';
+import { MainComponent } from '../main/main.component';
 // import { CoreModule } from 'src/app/shared/core.module';
 
 const routes: Routes = [
@@ -15,7 +15,7 @@ const routes: Routes = [
         children: [
             {
                 path: 'index',
-                component: IndexComponent
+                component: MainComponent
             },
             {
                 path: '',
@@ -27,7 +27,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-    declarations: [LayoutComponent, NavBarComponent, SideBarComponent],
+    declarations: [LayoutComponent, NavBarComponent, SideBarComponent, MainComponent],
     imports: [
         CommonModule,
         MaterialModule,
