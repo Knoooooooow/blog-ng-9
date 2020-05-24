@@ -8,7 +8,6 @@ import { ExtensionsService } from './services/extensions.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AppStoreModule } from './store/app-store.module';
 
-import { MaterialModule } from 'src/app/material.module';
 
 export function setupExtensions(appExtensionService: ExtensionsService): Function {
     return () => appExtensionService.load();
@@ -22,8 +21,7 @@ export function setupExtensions(appExtensionService: ExtensionsService): Functio
         AppRoutingModule,
         BrowserAnimationsModule,
         HttpClientModule,
-        AppStoreModule,
-        MaterialModule
+        AppStoreModule
     ],
     providers: [
         {

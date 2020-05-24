@@ -10,6 +10,12 @@ import { MatTreeModule } from '@angular/material/tree';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonModule } from '@angular/material/button';
+import {
+    MatDialogModule,
+    MAT_DIALOG_DEFAULT_OPTIONS
+} from '@angular/material/dialog';
 @NgModule({
     declarations: [],
     imports: [
@@ -23,7 +29,10 @@ import { MatInputModule } from '@angular/material/input';
         MatTreeModule,
         MatIconModule,
         MatListModule,
-        MatInputModule
+        MatInputModule,
+        MatTooltipModule,
+        MatDialogModule,
+        MatButtonModule
     ],
     exports: [
         MatToolbarModule,
@@ -36,7 +45,16 @@ import { MatInputModule } from '@angular/material/input';
         MatTreeModule,
         MatIconModule,
         MatListModule,
-        MatInputModule
+        MatInputModule,
+        MatTooltipModule,
+        MatDialogModule,
+        MatButtonModule
+    ],
+    providers: [
+        {
+            provide: MAT_DIALOG_DEFAULT_OPTIONS,
+            useValue: { closeOnNavigation: true, hasBackdrop: true, autoFocus: true }
+        }
     ]
 })
 export class MaterialModule { }

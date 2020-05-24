@@ -1,25 +1,13 @@
-<mat-toolbar class="mat-toolbar" color="primary">
-    <a class="mat-button nav-button nav-icon" (click)="toggleMenu()" href="javascript:;" matRipple
-        [matRippleColor]="myColor">
-        <i class="material-icons">
-            menu
-        </i>
-    </a>
-    <a class="mat-button nav-button index-home" href="javascript:;" matRipple
-        [matRippleColor]="myColor">
-        <i class="material-icons">
-            home
-        </i>
+<mat-toolbar class="toolbar" color="primary">
+    <button mat-icon-button (click)="toggleMenu()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <button mat-button>
         <span>Weird Blog</span>
-    </a>
-    <a class="mat-button nav-button nav-sm" href="https://github.com/Knoooooooow" target="_blank" matRipple
-        [matRippleColor]="myColor">
-        <span>Github</span>
-    </a>
+    </button>
     <!-- This fills the remaining space of the current row -->
     <span class="example-fill-remaining-space"></span>
-
-    <button mat-icon-button [matMenuTriggerFor]="appMenu" matRipple [matRippleColor]="myColor">
+    <button mat-icon-button [matMenuTriggerFor]="appMenu">
         <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #appMenu="matMenu">
