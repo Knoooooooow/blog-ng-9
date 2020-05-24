@@ -6,6 +6,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MaterialModule } from 'src/app/material.module';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { MainComponent } from '../main/main.component';
+import { ShowComponent } from '../show/show.component';
 // import { CoreModule } from 'src/app/shared/core.module';
 
 const routes: Routes = [
@@ -16,8 +17,10 @@ const routes: Routes = [
             {
                 path: 'index',
                 component: MainComponent
-            },
-            {
+            },{
+                path: 'show',
+                component: ShowComponent
+            },{
                 path: '',
                 redirectTo: `index`,
                 pathMatch: 'full'
@@ -27,11 +30,17 @@ const routes: Routes = [
 ]
 
 @NgModule({
-    declarations: [LayoutComponent, NavBarComponent, SideBarComponent, MainComponent],
+    declarations: [
+        LayoutComponent,
+        NavBarComponent,
+        SideBarComponent,
+        MainComponent,
+        ShowComponent
+    ],
     imports: [
         CommonModule,
         MaterialModule,
-        RouterModule.forChild(routes),
+        RouterModule.forChild(routes)
         // CoreModule.forChild()
     ],
     exports: [LayoutComponent]

@@ -12,6 +12,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+
 import {
     MatDialogModule,
     MAT_DIALOG_DEFAULT_OPTIONS
@@ -32,7 +34,8 @@ import {
         MatInputModule,
         MatTooltipModule,
         MatDialogModule,
-        MatButtonModule
+        MatButtonModule,
+        MatCardModule
     ],
     exports: [
         MatToolbarModule,
@@ -48,7 +51,8 @@ import {
         MatInputModule,
         MatTooltipModule,
         MatDialogModule,
-        MatButtonModule
+        MatButtonModule,
+        MatCardModule
     ],
     providers: [
         {

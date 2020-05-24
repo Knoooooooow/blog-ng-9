@@ -1,0 +1,19 @@
+<div class="show-container">
+    <mat-card class="card">
+        <mat-card-header>
+            <div mat-card-avatar class="header-image"></div>
+            <mat-card-title>通知组件</mat-card-title>
+            <mat-card-subtitle>点击显示按钮后，右侧会显示通知信息</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <p>
+                点击以显示通知消息
+            </p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button matTooltip="显示通知消息" aria-label="展示组件" (click)="showToast()">
+                显示
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>

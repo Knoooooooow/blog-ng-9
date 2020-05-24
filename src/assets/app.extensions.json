@@ -9,10 +9,18 @@
             {
                 "id": "app.sidebar.index",
                 "order": 100,
-                "icon": "folder",
+                "icon": "default",
                 "title": "首页",
                 "description": "首页",
                 "route": "index"
+            },
+            {
+                "id": "app.sidebar.show",
+                "order": 100,
+                "icon": "default",
+                "title": "展示组件",
+                "description": "首页",
+                "route": "show"
             }
         ]
     }
