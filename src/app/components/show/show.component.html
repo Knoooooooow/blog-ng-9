@@ -10,9 +10,29 @@
                 点击以显示通知消息
             </p>
         </mat-card-content>
+        <div class="empty-full"></div>
         <mat-card-actions>
             <button mat-raised-button matTooltip="显示通知消息" aria-label="展示组件" (click)="showToast()">
                 显示
+            </button>
+        </mat-card-actions>
+    </mat-card>
+    <mat-card class="card">
+        <mat-card-header>
+            <div mat-card-avatar class="header-image"></div>
+            <mat-card-title>动态组件</mat-card-title>
+            <mat-card-subtitle>点击生成按钮后，下方会动态生成一个组件</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <app-dynamic-component #DynamicComponent></app-dynamic-component>
+        </mat-card-content>
+        <div class="empty-full"></div>
+        <mat-card-actions>
+            <button mat-raised-button matTooltip="生成组件" aria-label="生成动态组件" (click)="createDynamicComponent()">
+                生成组件
+            </button>
+            <button mat-raised-button matTooltip="销毁组件" aria-label="销毁动态组件" (click)="destoryDynamicComponent()">
+                销毁组件
             </button>
         </mat-card-actions>
     </mat-card>

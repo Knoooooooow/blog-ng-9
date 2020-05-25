@@ -1,10 +1,21 @@
 .show-container {
     display: flex;
+    height: 100%;
     .card {
+        display: flex;
+        flex-direction: column;
         min-width: 400px;
+        margin: 25px;
+        height: 200px;
         .header-image {
             background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
             background-size: cover;
+        }
+        .empty-full{
+            flex: 1;
+        }
+        .mat-card-actions{
+            margin: 0;
         }
     }
 }

@@ -7,6 +7,7 @@ import { MaterialModule } from 'src/app/material.module';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { MainComponent } from '../main/main.component';
 import { ShowComponent } from '../show/show.component';
+import { DynamicComponent } from '../dynamic/dynamic.component';
 // import { CoreModule } from 'src/app/shared/core.module';
 
 const routes: Routes = [
@@ -35,7 +36,8 @@ const routes: Routes = [
         NavBarComponent,
         SideBarComponent,
         MainComponent,
-        ShowComponent
+        ShowComponent,
+        DynamicComponent
     ],
     imports: [
         CommonModule,
