@@ -8,6 +8,8 @@ import { SideBarComponent } from './side-bar/side-bar.component';
 import { MainComponent } from '../main/main.component';
 import { ShowComponent } from '../show/show.component';
 import { DynamicComponent } from '../dynamic/dynamic.component';
+import { LeetcodeComponent } from '../leetcode/leetcode.component';
+import { FlatTreeComponent } from '../flat-tree/flat-tree.component';
 // import { CoreModule } from 'src/app/shared/core.module';
 
 const routes: Routes = [
@@ -21,6 +23,12 @@ const routes: Routes = [
             },{
                 path: 'show',
                 component: ShowComponent
+            },{
+                path: 'tree',
+                component: FlatTreeComponent
+            },{
+                path: 'leetcode',
+                component: LeetcodeComponent
             },{
                 path: '',
                 redirectTo: `index`,
@@ -37,7 +45,9 @@ const routes: Routes = [
         SideBarComponent,
         MainComponent,
         ShowComponent,
-        DynamicComponent
+        DynamicComponent,
+        LeetcodeComponent,
+        FlatTreeComponent
     ],
     imports: [
         CommonModule,

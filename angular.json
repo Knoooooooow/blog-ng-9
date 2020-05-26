@@ -30,6 +30,7 @@
             "styles": [
               "src/styles.scss",
               "src/app/ui/theme.scss",
+              "src/app/ui/application.scss",
               "src/assets/fonts/material-icons/material-icon.scss"
             ],
             "scripts": []

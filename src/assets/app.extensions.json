@@ -16,11 +16,27 @@
             },
             {
                 "id": "app.sidebar.show",
-                "order": 100,
+                "order": 200,
                 "icon": "default",
                 "title": "展示组件",
-                "description": "首页",
+                "description": "展示",
                 "route": "show"
+            },
+            {
+                "id": "app.sidebar.tree",
+                "order": 300,
+                "icon": "default",
+                "title": "树状组件",
+                "description": "树组件",
+                "route": "tree"
+            },
+            {
+                "id": "app.sidebar.leetcode",
+                "order": 400,
+                "icon": "default",
+                "title": "练习组件",
+                "description": "练习",
+                "route": "leetcode"
             }
         ]
     }

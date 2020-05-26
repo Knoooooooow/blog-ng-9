@@ -1,0 +1,9 @@
+//全局通用的css样式，必须有注释
+
+
+//文字超出显示...
+.overflow-ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

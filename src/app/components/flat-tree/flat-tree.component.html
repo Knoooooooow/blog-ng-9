@@ -1,0 +1,20 @@
+<mat-tree class="tree-flat" [dataSource]="dataSource" [treeControl]="treeControl">
+    <mat-tree-node class="tree-flat-node" *matTreeNodeDef="let treeNode" id="{{treeNode.name + '-tree-node'}}"
+        matTreeNodePadding [matTreeNodePaddingIndent]="15">
+        <div class="node-name overflow-ellipsis">
+            {{treeNode.name}}
+        </div>
+    </mat-tree-node>
+    <mat-tree-node class="tree-flat-node" id="{{treeNode.name + '-tree-child-node'}}"
+        *matTreeNodeDef="let treeNode; when: hasChild" matTreeNodePadding [matTreeNodePaddingIndent]="15">
+        <button id="{{'button-'+treeNode.name}}" (click)="onNodeClicked(treeNode.node)" mat-icon-button
+            [attr.aria-label]="'toggle ' + treeNode.filename" matTreeNodeToggle>
+            <mat-icon class="tree-flat-icon">
+                {{treeControl.isExpanded(treeNode) ? 'keyboard_arrow_down' : 'keyboard_arrow_right'}}
+            </mat-icon>
+        </button>
+        <div class="node-name overflow-ellipsis">
+            {{treeNode.name}}
+        </div>
+    </mat-tree-node>
+</mat-tree>
