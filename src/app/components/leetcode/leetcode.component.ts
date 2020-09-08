@@ -41,4 +41,21 @@ export class LeetcodeComponent implements OnInit {
         //     targetMap.set(element, i)
         // }
     };
+    getAB<T>(a: A<string>, b: B, ab: A<string> & B, c: T) {
+        console.log(a, b);
+        console.log(ab.id);
+        console.log(c);
+    }
+
+    test() {
+        this.getAB({ id: 'a' }, { name: 'b' }, { id: 'aa', name: 'bb' }, 123);
+    }
+}
+export type Container<T> = { value: T };
+export interface A<T> {
+    id: string;
+    value?:T;
+}
+export interface B {
+    name: string;
 }
