@@ -10,6 +10,7 @@ import { ShowComponent } from '../show/show.component';
 import { DynamicComponent } from '../dynamic/dynamic.component';
 import { LeetcodeComponent } from '../leetcode/leetcode.component';
 import { FlatTreeComponent } from '../flat-tree/flat-tree.component';
+import { TranslateModule } from '@ngx-translate/core';
 // import { CoreModule } from 'src/app/shared/core.module';
 
 const routes: Routes = [
@@ -52,8 +53,8 @@ const routes: Routes = [
     imports: [
         CommonModule,
         MaterialModule,
-        RouterModule.forChild(routes)
-        // CoreModule.forChild()
+        RouterModule.forChild(routes),
+        TranslateModule.forChild()
     ],
     exports: [LayoutComponent]
 })
