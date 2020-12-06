@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslationService } from 'src/app/services/translation.service';
 
 @Component({
     selector: 'app-leetcode',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeetcodeComponent implements OnInit {
 
-    constructor() { }
+    constructor(public translationService:TranslationService) { }
 
     ngOnInit(): void {
         console.log(this.twoSum([2, 7, 11, 15], 26));

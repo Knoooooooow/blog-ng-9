@@ -8,7 +8,8 @@ import { ExtensionsService } from './services/extensions.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AppStoreModule } from './store/app-store.module';
 import { ToastModule } from 'src/app/shared/toast/toast.module';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule,TranslateLoader } from '@ngx-translate/core';
+import { TranslateLoaderService } from './services/translate-loader.service';
 
 
 export function setupExtensions(appExtensionService: ExtensionsService): Function {
@@ -25,7 +26,12 @@ export function setupExtensions(appExtensionService: ExtensionsService): Functio
         HttpClientModule,
         AppStoreModule,
         ToastModule.forRoot(),
-        TranslateModule.forRoot()
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useClass: TranslateLoaderService
+            }
+        })
     ],
     providers: [
         {

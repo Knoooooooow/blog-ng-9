@@ -1,9 +1,5 @@
 {
     "APP":{
-        "SIDE_BAR":{
-            "INDEX":{
-                "TOOLTIP":"haha"
-            }
-        }
+        "TITLE":"zh-cn"
     }
 }
