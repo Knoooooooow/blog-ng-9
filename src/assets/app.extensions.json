@@ -10,33 +10,51 @@
                 "id": "app.sidebar.index",
                 "order": 100,
                 "icon": "default",
-                "title": "首页",
-                "description": "首页",
+                "title": "APP.SIDEBAR_ROUTE.INDEX",
+                "description": "APP.SIDEBAR_ROUTE.INDEX",
                 "route": "index"
             },
             {
                 "id": "app.sidebar.show",
                 "order": 200,
                 "icon": "default",
-                "title": "展示组件",
-                "description": "展示",
+                "title": "APP.SIDEBAR_ROUTE.SHOW",
+                "description": "APP.SIDEBAR_ROUTE.SHOW",
                 "route": "show"
             },
             {
                 "id": "app.sidebar.tree",
                 "order": 300,
                 "icon": "default",
-                "title": "树状组件",
-                "description": "树组件",
+                "title": "APP.SIDEBAR_ROUTE.TREE",
+                "description": "APP.SIDEBAR_ROUTE.TREE",
                 "route": "tree"
             },
             {
-                "id": "app.sidebar.leetcode",
+                "id": "app.sidebar.animation",
                 "order": 400,
                 "icon": "default",
-                "title": "练习组件",
-                "description": "练习",
+                "title": "APP.SIDEBAR_ROUTE.ANIMATION",
+                "description": "APP.SIDEBAR_ROUTE.ANIMATION",
+                "route": "animation"
+            },
+            {
+                "id": "app.sidebar.leetcode",
+                "order": 500,
+                "icon": "default",
+                "title": "APP.SIDEBAR_ROUTE.OTHER",
+                "description": "APP.SIDEBAR_ROUTE.OTHER",
                 "route": "leetcode"
+            }
+        ],
+        "languages": [
+            {
+                "key": "en-US",
+                "label": "English"
+            },
+            {
+                "key": "zh-CN",
+                "label": "中文简体"
             }
         ]
     }

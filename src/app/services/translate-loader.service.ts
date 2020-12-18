@@ -19,9 +19,13 @@ export class TranslateLoaderService implements TranslateLoader {
     }
 
 
+    /**
+     * 缓存已加载的语言
+     * @param lang 语言
+     * @param json 语言文件
+     */
     registerCache(lang: string, json) {
-        const registered = this.cache.find((provider) => provider.lang === lang);
-        if (!registered) {
+        if (!this.cacheRegistered(lang)) {
             this.cache.push(new TranslationModel({ lang: lang, json: json }));
         }
     }
@@ -30,25 +34,14 @@ export class TranslateLoaderService implements TranslateLoader {
     }
 
     getTranslation(lang: string): Observable<any> {
-        return this.getFullTranslationJSON(lang);
-    }
-
-
-
-    fetchLanguageFile(lang: string): Observable<any> {
-        const translationUrl = `${this.defaultFolder}/${this.prefix}/${lang}${this.suffix}?v=${Date.now()}`;
-        return this.http.get(translationUrl).pipe(map(data => {
-            if (!this.cacheRegistered(lang)) {
-                this.cache.push(new TranslationModel({ lang: lang, json: data }))
-            }
-        }));
-    }
-    getFullTranslationJSON(lang: string): Observable<any> {
         if (this.cacheRegistered(lang)) {
             return of(this.cache.find((x) => x.lang === lang).json);
         } else {
             const translationUrl = `${this.defaultFolder}/${this.prefix}/${lang}${this.suffix}?v=${Date.now()}`;
-            return this.http.get(translationUrl);
+            return this.http.get(translationUrl).pipe(map(data => {
+                this.registerCache(lang, data);
+                return data;
+            }));
         }
     }
 

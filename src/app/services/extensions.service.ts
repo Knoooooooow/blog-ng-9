@@ -27,10 +27,13 @@ export class ExtensionsService {
         this.features = this.extensionLoaderService.getFeatures(config);
     }
 
-    appSidebarRoute(){
+    appSidebarRoute() {
         return this.getFeature('sidebar');
     }
-    
+    appSupportLanguages(): { key: string, label: string }[] {
+        return this.getFeature('languages');
+    }
+
     /**
      * 获取app.extensions.json中features的对象
      * @param key 需要获取的key

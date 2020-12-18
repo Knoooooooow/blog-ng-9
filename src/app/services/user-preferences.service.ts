@@ -5,14 +5,16 @@ import { Injectable } from '@angular/core';
 })
 export class UserPreferencesService {
 
-    default = {
-        lang: 'zh-cn'
+    private _default = {
+        lang: 'zh-CN'
     }
     constructor() {
         const userLang = navigator.language;
         if (userLang) {
-            this.default.lang = userLang;
+            this._default.lang = userLang;
         }
     }
-
+    get userLang(){
+        return this._default.lang;
+    }
 }

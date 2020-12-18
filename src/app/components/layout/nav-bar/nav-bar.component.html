@@ -3,7 +3,7 @@
         <mat-icon>menu</mat-icon>
     </button>
     <button mat-button>
-        <span>Weird Blog</span>
+        <span>{{'APP.TITLE' | translate}}</span>
     </button>
     <!-- This fills the remaining space of the current row -->
     <span class="example-fill-remaining-space"></span>
@@ -11,7 +11,11 @@
         <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #appMenu="matMenu">
-        <button mat-menu-item>关于</button>
-        <button mat-menu-item>帮助</button>
+        <button mat-menu-item [matMenuTriggerFor]="lang">{{'APP.LANGUAGE' | translate}}</button>
+        <button mat-menu-item>{{'APP.ABOUT' | translate}}</button>
+        <button mat-menu-item>{{'APP.HELP' | translate}}</button>
+    </mat-menu>
+    <mat-menu #lang="matMenu">
+        <button mat-menu-item *ngFor="let item of supportLang" (click)="changeLang(item.key)">{{item.label}}</button>
     </mat-menu>
 </mat-toolbar>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslationService } from './services/translation.service';
+// import { TranslationService } from './services/translation.service';
 
 @Component({
     selector: 'app-root',
@@ -8,10 +8,10 @@ import { TranslationService } from './services/translation.service';
 })
 export class AppComponent implements OnInit {
     title = 'blog';
-    constructor(public translationService: TranslationService) {
+    constructor() {
 
     }
     ngOnInit(): void {
-        this.translationService.initTranslation();
+        // this.translationService.initTranslation();
     }
 }

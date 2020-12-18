@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { Subject, Observable } from 'rxjs';
 import { StorageService } from './storage.service';
 import { TranslateLoaderService } from './translate-loader.service';
 import { UserPreferencesService } from './user-preferences.service';
@@ -10,6 +11,8 @@ import { UserPreferencesService } from './user-preferences.service';
 export class TranslationService {
 
     userLang: string;
+
+    private _onLangChange = new Subject<any>();
 
     constructor(public translate: TranslateService,
         private translateLoaderService: TranslateLoaderService,
@@ -29,7 +32,7 @@ export class TranslationService {
         } else if (this.userLang) {
             this.translate.use(this.userLang);
         } else {
-            this.translate.use(this.userPreferencesService.default.lang);
+            this.translate.use(this.userPreferencesService.userLang);
         }
     }
 
@@ -37,8 +40,8 @@ export class TranslationService {
      * 获得语言的翻译JSON
      * @param lang 语言名称，和文件夹名同步
      */
-    async getTranslationJSON(lang = this.userPreferencesService.default.lang) {
-        return await this.translateLoaderService.getFullTranslationJSON(lang).toPromise();
+    async getTranslationJSON(lang = this.userPreferencesService.userLang) {
+        return await this.translateLoaderService.getTranslation(lang).toPromise();
     }
 
     /**
@@ -49,19 +52,13 @@ export class TranslationService {
         this.userLang = lang;
         this.storageService.setItem('lang', lang);
         this.translate.use(lang);
-        this.onTranslationChanged(lang);
+        this._onLangChange.next(lang);
     }
     /**
      * 监听语言变更
      */
-    listenTranslationChange() {
-        return this.translate.onTranslationChange;
-    }
-    onTranslationChanged(lang: string): void {
-        this.translate.onTranslationChange.next({
-            lang: lang,
-            translations: this.getTranslationJSON(lang)
-        });
+    listenTranslationChange(): Observable<string> {
+        return this._onLangChange;
     }
     isUserLangChanged(): boolean {
         return this.storageService.hasItem('lang');

@@ -1,5 +1,15 @@
 {
-    "APP":{
-        "TITLE":"zh-cn"
+    "APP": {
+        "TITLE": "展示",
+        "LANGUAGE": "语言",
+        "ABOUT": "关于",
+        "HELP": "帮助",
+        "SIDEBAR_ROUTE":{
+            "INDEX":"首页",
+            "SHOW":"展示组件",
+            "TREE":"扁平树组件",
+            "OTHER":"其他",
+            "ANIMATION":"动画组件"
+        }
     }
 }

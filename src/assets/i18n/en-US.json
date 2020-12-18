@@ -1,5 +1,15 @@
 {
-    "APP":{
-        "TITLE":"en-US"
+    "APP": {
+        "TITLE": "show",
+        "LANGUAGE": "language",
+        "ABOUT": "about",
+        "HELP": "help",
+        "SIDEBAR_ROUTE":{
+            "INDEX":"Home",
+            "SHOW":"Show",
+            "TREE":"Tree",
+            "OTHER":"Other",
+            "ANIMATION":"Animation"
+        }
     }
 }
