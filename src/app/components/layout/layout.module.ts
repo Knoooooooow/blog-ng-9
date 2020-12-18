@@ -11,6 +11,7 @@ import { DynamicComponent } from '../dynamic/dynamic.component';
 import { LeetcodeComponent } from '../leetcode/leetcode.component';
 import { FlatTreeComponent } from '../flat-tree/flat-tree.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { AnimationComponent } from '../animation/animation.component';
 // import { CoreModule } from 'src/app/shared/core.module';
 
 const routes: Routes = [
@@ -31,6 +32,10 @@ const routes: Routes = [
                 path: 'leetcode',
                 component: LeetcodeComponent
             },{
+                path: 'animation',
+                component: AnimationComponent
+            }
+            ,{
                 path: '',
                 redirectTo: `index`,
                 pathMatch: 'full'
@@ -48,7 +53,8 @@ const routes: Routes = [
         ShowComponent,
         DynamicComponent,
         LeetcodeComponent,
-        FlatTreeComponent
+        FlatTreeComponent,
+        AnimationComponent
     ],
     imports: [
         CommonModule,
