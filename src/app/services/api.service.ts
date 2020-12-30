@@ -13,8 +13,9 @@ export class ApiService {
 
     getTreeNodes(id) {
         const mockData = [
-            { id: '1', name: '测试名称' },
-            { id: '2', name: '测试名称2' }
+            { id: '1', name: '模拟数据1' },
+            { id: '2', name: '模拟数据2' },
+            { id: '2', name: '模拟数据3' },
         ]
         return of(mockData).pipe(map((nodes: TreeBaseNode[]) => nodes.map(
             (node) => new TreeBaseNode(node)

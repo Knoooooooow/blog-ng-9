@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Subject, Observable } from 'rxjs';
 import { StorageService } from './storage.service';
 import { TranslateLoaderService } from './translate-loader.service';
 import { UserPreferencesService } from './user-preferences.service';
@@ -12,14 +11,12 @@ export class TranslationService {
 
     userLang: string;
 
-    private _onLangChange = new Subject<any>();
-
     constructor(public translate: TranslateService,
         private translateLoaderService: TranslateLoaderService,
         private userPreferencesService: UserPreferencesService,
         private storageService: StorageService) {
 
-        this.initTranslation();
+        // this.initTranslation();
     }
 
     /**
@@ -52,15 +49,5 @@ export class TranslationService {
         this.userLang = lang;
         this.storageService.setItem('lang', lang);
         this.translate.use(lang);
-        this._onLangChange.next(lang);
-    }
-    /**
-     * 监听语言变更
-     */
-    listenTranslationChange(): Observable<string> {
-        return this._onLangChange;
-    }
-    isUserLangChanged(): boolean {
-        return this.storageService.hasItem('lang');
     }
 }
