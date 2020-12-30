@@ -6,13 +6,13 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MaterialModule } from 'src/app/material.module';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { MainComponent } from '../main/main.component';
+import { InputComponent } from '../input/input.component';
 import { ShowComponent } from '../show/show.component';
 import { DynamicComponent } from '../dynamic/dynamic.component';
 import { LeetcodeComponent } from '../leetcode/leetcode.component';
 import { FlatTreeComponent } from '../flat-tree/flat-tree.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { AnimationComponent } from '../animation/animation.component';
-// import { CoreModule } from 'src/app/shared/core.module';
 
 const routes: Routes = [
     {
@@ -21,21 +21,26 @@ const routes: Routes = [
         children: [
             {
                 path: 'index',
-                component: MainComponent
-            },{
+                component: MainComponent,
+                data: { animationName: 'AnimationRoute1' }
+            }, {
                 path: 'show',
-                component: ShowComponent
-            },{
+                component: ShowComponent,
+                data: { animationName: 'AnimationRoute2' }
+            }, {
                 path: 'tree',
-                component: FlatTreeComponent
-            },{
+                component: FlatTreeComponent,
+                data: { animationName: 'AnimationRoute3' }
+            }, {
                 path: 'leetcode',
-                component: LeetcodeComponent
-            },{
+                component: LeetcodeComponent,
+                data: { animationName: 'AnimationRoute4' }
+            }, {
                 path: 'animation',
-                component: AnimationComponent
+                component: AnimationComponent,
+                data: { animationName: 'AnimationRoute5' }
             }
-            ,{
+            , {
                 path: '',
                 redirectTo: `index`,
                 pathMatch: 'full'
@@ -50,6 +55,7 @@ const routes: Routes = [
         NavBarComponent,
         SideBarComponent,
         MainComponent,
+        InputComponent,
         ShowComponent,
         DynamicComponent,
         LeetcodeComponent,
