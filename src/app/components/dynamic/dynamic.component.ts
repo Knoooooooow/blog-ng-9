@@ -8,7 +8,7 @@ import {
     ComponentRef,
     OnDestroy
 } from '@angular/core';
-import { MainComponent } from '../main/main.component';
+import { InputComponent } from '../input/input.component';
 
 @Component({
     selector: 'app-dynamic-component',
@@ -26,7 +26,7 @@ export class DynamicComponent implements OnInit, OnDestroy {
     createComponent() {
         this.container.clear();
         const factory: ComponentFactory<any> =
-            this.resolver.resolveComponentFactory(MainComponent);
+            this.resolver.resolveComponentFactory(InputComponent);
         this.componentRef = this.container.createComponent(factory);
     }
     private componentCreated(): boolean {

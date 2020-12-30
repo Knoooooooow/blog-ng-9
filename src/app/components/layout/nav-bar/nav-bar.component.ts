@@ -5,6 +5,8 @@ import { SetSideBarStateAction } from 'src/app/store/actions/app-action';
 import { getIsShowSideBar } from 'src/app/store/selectors/app-selector';
 import { ExtensionsService } from 'src/app/services/extensions.service';
 import { TranslationService } from 'src/app/services/translation.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AboutComponent } from 'src/app/dialogs/about/about.component';
 
 @Component({
     selector: 'app-nav-bar',
@@ -19,7 +21,8 @@ export class NavBarComponent implements OnInit {
     supportLang = [];
     constructor(private store: Store<AppStore>,
         private extensionsService: ExtensionsService,
-        private translationService:TranslationService) {
+        private translationService:TranslationService,
+        public dialog: MatDialog) {
 
         this.supportLang = this.extensionsService.appSupportLanguages();
     }
@@ -35,6 +38,10 @@ export class NavBarComponent implements OnInit {
         this.store.select(getIsShowSideBar).subscribe(data => {
             this.sideBarStatus = data;
         })
+    }
+
+    openDialog(){
+        this.dialog.open(AboutComponent);
     }
 
     toggleMenu() {

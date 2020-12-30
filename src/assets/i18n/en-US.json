@@ -10,6 +10,9 @@
             "TREE":"Tree",
             "OTHER":"Other",
             "ANIMATION":"Animation"
+        },
+        "ACTIONS":{
+            "CLOSE":"Close"
         }
     }
 }

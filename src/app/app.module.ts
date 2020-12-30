@@ -8,23 +8,26 @@ import { ExtensionsService } from './services/extensions.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AppStoreModule } from './store/app-store.module';
 import { ToastModule } from 'src/app/shared/toast/toast.module';
+import { MaterialModule } from 'src/app/material.module';
+
 import { TranslateModule,TranslateLoader } from '@ngx-translate/core';
 import { TranslateLoaderService } from './services/translate-loader.service';
+import { AboutComponent } from './dialogs/about/about.component';
 
 
 export function setupExtensions(appExtensionService: ExtensionsService): Function {
     return () => appExtensionService.load();
 }
+
+const entryComponents = [AboutComponent];
 @NgModule({
-    declarations: [
-        AppComponent
-    ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
         HttpClientModule,
         AppStoreModule,
+        MaterialModule,
         ToastModule.forRoot(),
         TranslateModule.forRoot({
             loader: {
@@ -33,6 +36,11 @@ export function setupExtensions(appExtensionService: ExtensionsService): Functio
             }
         })
     ],
+    declarations: [
+        AppComponent,
+        ...entryComponents
+    ],
+    entryComponents:[...entryComponents],
     providers: [
         {
             provide: APP_INITIALIZER,

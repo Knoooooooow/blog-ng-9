@@ -12,7 +12,7 @@
     </button>
     <mat-menu #appMenu="matMenu">
         <button mat-menu-item [matMenuTriggerFor]="lang">{{'APP.LANGUAGE' | translate}}</button>
-        <button mat-menu-item>{{'APP.ABOUT' | translate}}</button>
+        <button mat-menu-item (click)="openDialog()">{{'APP.ABOUT' | translate}}</button>
         <button mat-menu-item>{{'APP.HELP' | translate}}</button>
     </mat-menu>
     <mat-menu #lang="matMenu">
