@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppStore } from 'src/app/model/app/app-state';
 import { Store } from '@ngrx/store';
-import { SetSideBarStateAction } from 'src/app/store/actions/app-action';
+import { SetSideBarStateAction, PlayAudioAction } from 'src/app/store/actions/app-action';
 import { getIsShowSideBar } from 'src/app/store/selectors/app-selector';
 import { ExtensionsService } from 'src/app/services/extensions.service';
 import { TranslationService } from 'src/app/services/translation.service';
@@ -21,7 +21,7 @@ export class NavBarComponent implements OnInit {
     supportLang = [];
     constructor(private store: Store<AppStore>,
         private extensionsService: ExtensionsService,
-        private translationService:TranslationService,
+        private translationService: TranslationService,
         public dialog: MatDialog) {
 
         this.supportLang = this.extensionsService.appSupportLanguages();
@@ -31,7 +31,7 @@ export class NavBarComponent implements OnInit {
         this.listenIsShowSideBar();
     }
 
-    changeLang(key:string){
+    changeLang(key: string) {
         this.translationService.changeTranslation(key);
     }
     listenIsShowSideBar() {
@@ -40,7 +40,11 @@ export class NavBarComponent implements OnInit {
         })
     }
 
-    openDialog(){
+    playAudio() {
+        this.store.dispatch(new PlayAudioAction(true));
+    }
+
+    openDialog() {
         this.dialog.open(AboutComponent);
     }
 

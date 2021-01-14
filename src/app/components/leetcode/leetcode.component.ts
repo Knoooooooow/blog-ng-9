@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { TranslationService } from 'src/app/services/translation.service';
 
 @Component({
@@ -8,10 +8,62 @@ import { TranslationService } from 'src/app/services/translation.service';
 })
 export class LeetcodeComponent implements OnInit {
 
-    constructor(public translationService:TranslationService) { }
+    @ViewChild('canvas') canvas: ElementRef<HTMLCanvasElement>;
+
+    @ViewChild('audio', { static: true })
+    public audio: ElementRef<HTMLAudioElement>;
+
+    constructor(public translationService: TranslationService) { }
 
     ngOnInit(): void {
         console.log(this.twoSum([2, 7, 11, 15], 26));
+
+    }
+    fileChange(file: FileList) {
+        this.audio.nativeElement.src = URL.createObjectURL(file[0]);
+        this.audio.nativeElement.load();
+        this.audio.nativeElement.play();
+        this.play();
+    }
+
+    play() {
+        let context = new AudioContext();
+        let source = context.createMediaElementSource(this.audio.nativeElement);
+        let analyser = context.createAnalyser();
+        source.connect(analyser);
+        analyser.connect(context.destination);
+        analyser.fftSize = 1024;
+        let bufferLength = analyser.frequencyBinCount;
+        let dataArray = new Uint8Array(bufferLength);
+        let ctx = this.canvas.nativeElement.getContext('2d');
+        const WIDTH = 1200;
+        const HEIGHT = 600;
+        this.canvas.nativeElement.width = WIDTH;
+        this.canvas.nativeElement.height = HEIGHT;
+        let barWidth = WIDTH / bufferLength * 1.5;
+        let barHeight;
+        function renderFrame() {
+            requestAnimationFrame(renderFrame);
+
+            analyser.getByteFrequencyData(dataArray);
+            console.log(dataArray);
+            
+            ctx.clearRect(0, 0, WIDTH, HEIGHT);
+
+            for (var i = 0, x = 0; i < bufferLength; i++) {
+                barHeight = dataArray[i];
+
+                var r = barHeight + 25 * (i / bufferLength);
+                var g = 250 * (i / bufferLength);
+                var b = 50;
+
+                ctx.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
+                ctx.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
+
+                x += barWidth + 2;
+            }
+        }
+        renderFrame();
     }
 
     /**
@@ -55,7 +107,7 @@ export class LeetcodeComponent implements OnInit {
 export type Container<T> = { value: T };
 export interface A<T> {
     id: string;
-    value?:T;
+    value?: T;
 }
 export interface B {
     name: string;

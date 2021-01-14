@@ -1,6 +1,7 @@
 import { Injectable, NgZone, OnDestroy } from '@angular/core';
 
 import * as THREE from 'three';
+import { EngineFactoryService } from './engine-factory.service';
 import { WindowService } from './window.service';
 
 @Injectable({
@@ -10,22 +11,27 @@ export class EngineService implements OnDestroy {
 
     private canvas: HTMLCanvasElement;
     private renderer: THREE.WebGLRenderer;
-    private camera: THREE.PerspectiveCamera;
+    private camera: THREE.OrthographicCamera;
     private scene: THREE.Scene;
     private light: THREE.AmbientLight;
 
-    private cube: THREE.Mesh;
+    // private cube: THREE.Mesh;
 
     private frameId: number = null;
 
-    public constructor(private ngZone: NgZone, private windowService: WindowService) {
+
+    public constructor(private ngZone: NgZone,
+        private windowService: WindowService,
+        private engineFactoryService: EngineFactoryService) {
     }
 
     public ngOnDestroy(): void {
         if (this.frameId != null) {
-            cancelAnimationFrame(this.frameId);
+            this.windowService.cancelAnimationFrame(this.frameId);
         }
     }
+    width
+    height
 
     public createScene(canvas: HTMLCanvasElement, canvasContainerRef: HTMLElement): void {
         // The first step is to get the reference of the canvas element from our HTML document
@@ -37,66 +43,147 @@ export class EngineService implements OnDestroy {
             antialias: true // smooth edges
         });
         const canvasContainer = canvasContainerRef;
-        const width = canvasContainer.offsetWidth;
-        const height = canvasContainer.offsetHeight;
-        this.renderer.setSize(width, height);
+        this.width = canvasContainer.offsetWidth;
+        this.height = canvasContainer.offsetHeight;
+        this.renderer.setSize(this.width, this.height);
 
         // create the scene
-        this.scene = new THREE.Scene();
+        this.initScene();
+        this.initCamera(this.width, this.height);
+        this.initLight();
+    }
+    maxHeight = 50;
+    v = 1;
+    startCube() {
+        this.windowService.requestAnimationFrame(() => {
+            this.render();
+            if (this.engineFactoryService.cube[0].scale.y >= this.maxHeight) {
 
-        this.camera = new THREE.PerspectiveCamera(
-            75, width / height, 0.1, 1000
-        );
-        this.camera.position.z = 5;
-        this.scene.add(this.camera);
+                return;
+            }
 
-        // soft white light
-        this.light = new THREE.AmbientLight(0x404040);
-        this.light.position.z = 10;
-        this.scene.add(this.light);
+            this.engineFactoryService.cube[0].scale.y += this.v;
+            this.startCube();
+        });
 
-        const geometry = new THREE.BoxGeometry(1, 1, 1);
-        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-        this.cube = new THREE.Mesh(geometry, material);
-        this.scene.add(this.cube);
+    }
+    num = 1;
+    space = 1;
+    frustumSize = 1000;
+    barWidth = 1;
+    barHeight = 1;
+    color = 0x00ff00;
+    play(audio, width) {
+        let context = new AudioContext();
+        let source = context.createMediaElementSource(audio);
+        let analyser = context.createAnalyser();
+        source.connect(analyser);
+        analyser.connect(context.destination);
+        analyser.fftSize = 1024;
+        let bufferLength = analyser.frequencyBinCount;
+        let dataArray = new Uint8Array(bufferLength);
+        let barWidth = width / bufferLength * 1.5;
+        let barHeight;
+        
+        this.barWidth = barWidth;
+        this.num = bufferLength;
+        let that = this;
+        this.addCube();
+        function renderFrame() {
+            requestAnimationFrame(renderFrame);
 
+            analyser.getByteFrequencyData(dataArray);
+
+            for (let i = 0; i < bufferLength; i++) {
+                barHeight = dataArray[i];
+                that.engineFactoryService.cube[i].scale.y = barHeight;
+
+            }
+        }
+        renderFrame();
+    }
+    addCube() {
+        this.engineFactoryService.createCubeFactory({
+            num: this.num,
+            startPositionX: this.width / -2,
+            startPositionY: this.height / -2,
+            space: this.space,
+            width: this.barWidth,
+            height: this.barHeight,
+            color: this.color
+        })
+
+        for (let i = 0; i < this.num; i++) {
+            this.scene.add(this.engineFactoryService.cube[i]);
+        }
     }
 
     public animate(canvasContainerRef: HTMLElement): void {
-        const width = canvasContainerRef.offsetWidth;
-        const height = canvasContainerRef.offsetHeight;
-        
-        // We have to run this outside angular zones,
-        // because it could trigger heavy changeDetection cycles.
+
         this.ngZone.runOutsideAngular(() => {
             if (document.readyState !== 'loading') {
                 this.render();
             } else {
-                window.addEventListener('DOMContentLoaded', () => {
+                this.windowService.domContentLoaded.subscribe(_ => {
                     this.render();
                 });
             }
-            this.windowService.resize.subscribe(data => {
-                this.resize(width, height);
+            this.windowService.resize.subscribe(_ => {
+                this.resize(canvasContainerRef);
             })
         });
+
     }
 
     public render(): void {
-        this.frameId = requestAnimationFrame(() => {
+        this.frameId = this.windowService.requestAnimationFrame(() => {
             this.render();
         });
 
-        this.cube.rotation.x += 0.01;
-        this.cube.rotation.y += 0.01;
         this.renderer.render(this.scene, this.camera);
     }
+    
+    initScene() {
+        this.scene = new THREE.Scene();
+        this.scene.background = new THREE.Color(0xf0f0f0);
+    }
 
-    public resize(width, height): void {
+    initCamera(width, height) {
+        this.camera = new THREE.OrthographicCamera(width / - 2, width / 2, height / 2, height / - 2, 1, 100);
+        this.camera.position.set(0, 0, 100);
+        this.scene.add(this.camera);
+    }
+    initLight() {
+        this.light = new THREE.AmbientLight(0x404040);
+        this.light.position.z = 1;
+        this.scene.add(this.light);
+    }
 
-        this.camera.aspect = width / height;
+    public resize(canvasContainerRef): void {
+
+        this.width = canvasContainerRef.offsetWidth;
+        this.height = canvasContainerRef.offsetHeight;
+        
+        this.updateCubePosition();
+
+        this.camera.left = -this.width / 2;
+        this.camera.right = this.width / 2;
+        this.camera.top = this.height / 2;
+        this.camera.bottom = -this.height / 2;
         this.camera.updateProjectionMatrix();
-
-        this.renderer.setSize(width, height);
+        this.renderer.setSize(this.width, this.height);
+    }
+    updateCubePosition(){
+        for (let i = 0; i < this.engineFactoryService.cube.length; i++) {
+            this.engineFactoryService.updatePosition({
+                num: this.num,
+                startPositionX: this.width / -2,
+                startPositionY: this.height / -2,
+                space: this.space,
+                width: this.barWidth,
+                height: this.barHeight,
+                color: this.color
+            }, i)
+        }
     }
 }
