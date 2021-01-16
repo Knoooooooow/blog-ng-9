@@ -12,7 +12,8 @@
             "ANIMATION":"Animation"
         },
         "ACTIONS":{
-            "CLOSE":"Close"
+            "CLOSE":"Close",
+            "UPLOAD":"Upload"
         }
     }
 }

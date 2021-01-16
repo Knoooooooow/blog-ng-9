@@ -1,11 +1,3 @@
 <div class="canvas-container" #canvasContainer>
     <canvas #rendererCanvas></canvas>
-    <div class="music">
-        <div class="upload">
-            <button mat-raised-button (click)="openInput()">上传</button>
-            <input #audioUpload id="fileInput" hidden type="file" (change)="fileChange($event.target.files)" name="file"
-                accept="audio/*">
-        </div>
-        <audio class="audio" #audio id="audio" controls></audio>
-    </div>
 </div>

@@ -12,7 +12,8 @@
             "ANIMATION":"动画组件"
         },
         "ACTIONS":{
-            "CLOSE":"关闭"
+            "CLOSE":"关闭",
+            "UPLOAD":"上传"
         }
     }
 }

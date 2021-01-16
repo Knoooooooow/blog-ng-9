@@ -8,23 +8,12 @@
     .example-fill-remaining-space {
         flex: 1 1 auto;
     }
-    .nav-button{
-        box-sizing: border-box;
-        position: relative;
-        user-select: none;
-        text-decoration: none;
-        cursor: pointer;
-        outline: 0;
-        border: none;
-        align-items: center;
-        transition: color 0.1s;
+    .music{
         display: flex;
         justify-content: center;
         align-items: center;
-        color: #fff;
-        font-size: 14px;
-        &:hover {
-            color: rgb(186, 214, 241);
+        .upload{
+            margin: 0 10px;
         }
     }
 }

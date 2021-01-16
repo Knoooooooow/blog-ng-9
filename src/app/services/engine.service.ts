@@ -52,28 +52,17 @@ export class EngineService implements OnDestroy {
         this.initCamera(this.width, this.height);
         this.initLight();
     }
-    maxHeight = 50;
-    v = 1;
-    startCube() {
-        this.windowService.requestAnimationFrame(() => {
-            this.render();
-            if (this.engineFactoryService.cube[0].scale.y >= this.maxHeight) {
-
-                return;
-            }
-
-            this.engineFactoryService.cube[0].scale.y += this.v;
-            this.startCube();
-        });
-
-    }
     num = 1;
     space = 1;
     frustumSize = 1000;
     barWidth = 1;
     barHeight = 1;
     color = 0x00ff00;
-    play(audio, width) {
+    hasActiveAudio = false;
+    play(audio) {
+        if(!this.width || !this.hasActiveAudio){
+            return ;
+        }
         let context = new AudioContext();
         let source = context.createMediaElementSource(audio);
         let analyser = context.createAnalyser();
@@ -82,7 +71,7 @@ export class EngineService implements OnDestroy {
         analyser.fftSize = 1024;
         let bufferLength = analyser.frequencyBinCount;
         let dataArray = new Uint8Array(bufferLength);
-        let barWidth = width / bufferLength * 1.5;
+        let barWidth = this.width / bufferLength;
         let barHeight;
         
         this.barWidth = barWidth;
