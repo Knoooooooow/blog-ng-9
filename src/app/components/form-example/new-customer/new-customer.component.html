@@ -1,0 +1,17 @@
+<div class="new-customer" *ngIf="form">
+    <form [formGroup]="form" (submit)="submit()">
+        <div class="form-item">
+            <mat-form-field>
+                <mat-label>{{'APP.FORM.NAME' | translate}}</mat-label>
+                <input matInput placeholder="{{ 'APP.FORM.NAME' | translate }}" autofocus formControlName="name"
+                    autocomplete="off" />
+
+            </mat-form-field>
+            <div class="icons">
+                <button (click)="removeCustomer()" mat-icon-button>
+                    <mat-icon>remove</mat-icon>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -8,12 +8,23 @@
             "INDEX":"Home",
             "SHOW":"Show",
             "TREE":"Tree",
+            "FORM":"Form",
             "OTHER":"Other",
             "ANIMATION":"Animation"
         },
         "ACTIONS":{
             "CLOSE":"Close",
-            "UPLOAD":"Upload"
+            "UPLOAD":"Upload",
+            "CONFIRM":"confirm"
+        },
+        "FORM":{
+            "TITLE":"title",
+            "VISIBILITY":{
+                "PUBLIC":"public",
+                "PRIVATE":"private"
+            },
+            "NEW_CUSTOMER":"create customer",
+            "NAME":"name"
         }
     }
 }

@@ -58,10 +58,9 @@ export class EngineService implements OnDestroy {
     barWidth = 1;
     barHeight = 1;
     color = 0x00ff00;
-    hasActiveAudio = false;
-    play(audio) {
-        if(!this.width || !this.hasActiveAudio){
-            return ;
+    play(audio: HTMLAudioElement) {
+        if (!this.width) {
+            return;
         }
         let context = new AudioContext();
         let source = context.createMediaElementSource(audio);
@@ -73,23 +72,26 @@ export class EngineService implements OnDestroy {
         let dataArray = new Uint8Array(bufferLength);
         let barWidth = this.width / bufferLength;
         let barHeight;
-        
         this.barWidth = barWidth;
         this.num = bufferLength;
         let that = this;
+
         this.addCube();
-        function renderFrame() {
-            requestAnimationFrame(renderFrame);
+        this.ngZone.runOutsideAngular(() => {
 
-            analyser.getByteFrequencyData(dataArray);
+            function renderFrame() {
+                that.windowService.requestAnimationFrame(renderFrame);
 
-            for (let i = 0; i < bufferLength; i++) {
-                barHeight = dataArray[i];
-                that.engineFactoryService.cube[i].scale.y = barHeight;
+                analyser.getByteFrequencyData(dataArray);
 
+                for (let i = 0; i < bufferLength; i++) {
+                    barHeight = dataArray[i];
+                    that.engineFactoryService.cube[i].scale.y = barHeight;
+
+                }
             }
-        }
-        renderFrame();
+            renderFrame();
+        })
     }
     addCube() {
         this.engineFactoryService.createCubeFactory({
@@ -131,7 +133,7 @@ export class EngineService implements OnDestroy {
 
         this.renderer.render(this.scene, this.camera);
     }
-    
+
     initScene() {
         this.scene = new THREE.Scene();
         this.scene.background = new THREE.Color(0xf0f0f0);
@@ -152,7 +154,7 @@ export class EngineService implements OnDestroy {
 
         this.width = canvasContainerRef.offsetWidth;
         this.height = canvasContainerRef.offsetHeight;
-        
+
         this.updateCubePosition();
 
         this.camera.left = -this.width / 2;
@@ -162,7 +164,7 @@ export class EngineService implements OnDestroy {
         this.camera.updateProjectionMatrix();
         this.renderer.setSize(this.width, this.height);
     }
-    updateCubePosition(){
+    updateCubePosition() {
         for (let i = 0; i < this.engineFactoryService.cube.length; i++) {
             this.engineFactoryService.updatePosition({
                 num: this.num,

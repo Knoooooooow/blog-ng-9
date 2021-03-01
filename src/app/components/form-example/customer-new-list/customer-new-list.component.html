@@ -1,0 +1,11 @@
+<div class="form-top">
+    <div class="title">{{ 'APP.FORM.NEW_CUSTOMER' | translate }}</div>
+    <button (click)="createCustomer()" mat-icon-button>
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
+<ng-container *ngFor="let customer of customers;let i =index;">
+    <app-new-customer [customer]="customer" [customerIndex]="i" (customerChange)="customerChange($event,i)"
+        (customerRemove)="customerRemove($event)">
+    </app-new-customer>
+</ng-container>

@@ -8,12 +8,23 @@
             "INDEX":"首页",
             "SHOW":"展示组件",
             "TREE":"扁平树组件",
+            "FORM":"表单",
             "OTHER":"其他",
             "ANIMATION":"动画组件"
         },
         "ACTIONS":{
             "CLOSE":"关闭",
-            "UPLOAD":"上传"
+            "UPLOAD":"上传",
+            "CONFIRM":"确认"
+        },
+        "FORM":{
+            "TITLE":"标题",
+            "VISIBILITY":{
+                "PUBLIC":"公共",
+                "PRIVATE":"私有"
+            },
+            "NEW_CUSTOMER":"创建客户",
+            "NAME":"姓名"
         }
     }
 }

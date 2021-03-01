@@ -33,15 +33,19 @@ export class AudioService {
             }
         }
     }
-    changeAudioStatus(){
-        if(this.isPlayingAudio()){
+    changeAudioStatus() {
+        if (!this.hasActiveAudio()) {
+            return;
+        }
+        
+        if (this.isPlayingAudio()) {
             this.activeAudio.pause();
-        }else{
+        } else {
             this.activeAudio.play();
         }
     }
-    isPlayingAudio(){
-        return this.activeAudio && !this.activeAudio.paused;
+    isPlayingAudio() {
+        return this.hasActiveAudio() && !this.activeAudio.paused;
     }
     hasActiveAudio() {
         return !!this.activeAudio;

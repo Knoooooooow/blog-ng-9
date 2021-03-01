@@ -1,0 +1,33 @@
+<div class="form-example">
+    <mat-card>
+        <div class="form">
+            <form [formGroup]="form" (submit)="submit()">
+                <div class="form-item">
+                    <mat-form-field>
+                        <mat-label>{{'APP.FORM.TITLE' | translate}}</mat-label>
+                        <input matInput placeholder="{{ 'APP.FORM.TITLE' | translate }}" autofocus
+                            formControlName="title" autocomplete="off" />
+
+                    </mat-form-field>
+                </div>
+                <div class="form-item">
+                    <mat-radio-group (change)="visibilityChange($event)" formControlName="options">
+                        <mat-radio-button color="primary" *ngFor="let option of visibilityOptions"
+                            [disabled]="option.disabled" [value]="option.value" [checked]="option.checked">
+                            {{ option.label | translate }}
+                        </mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <div class="form-item">
+                    <app-customer-new-list [customers]="customers" (customersChange)="customersChange($event)">
+
+                    </app-customer-new-list>
+
+                </div>
+            </form>
+            <button color="primary" mat-flat-button (click)="submit()" [disabled]="!form.valid">
+                {{ 'APP.ACTIONS.CONFIRM' | translate }}
+            </button>
+        </div>
+    </mat-card>
+</div>

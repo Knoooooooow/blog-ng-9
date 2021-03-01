@@ -13,6 +13,10 @@ import { LeetcodeComponent } from '../leetcode/leetcode.component';
 import { FlatTreeComponent } from '../flat-tree/flat-tree.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { AnimationComponent } from '../animation/animation.component';
+import { FormExampleComponent } from '../form-example/form-example.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NewCustomerComponent } from '../form-example/new-customer/new-customer.component';
+import { CustomerNewListComponent } from '../form-example/customer-new-list/customer-new-list.component';
 
 const routes: Routes = [
     {
@@ -31,14 +35,18 @@ const routes: Routes = [
                 path: 'tree',
                 component: FlatTreeComponent,
                 data: { animationName: 'AnimationRoute3' }
+            },{
+                path: 'form',
+                component: FormExampleComponent,
+                data: { animationName: 'AnimationRoute4' }
             }, {
                 path: 'leetcode',
                 component: LeetcodeComponent,
-                data: { animationName: 'AnimationRoute4' }
+                data: { animationName: 'AnimationRoute5' }
             }, {
                 path: 'animation',
                 component: AnimationComponent,
-                data: { animationName: 'AnimationRoute5' }
+                data: { animationName: 'AnimationRoute6' }
             }
             , {
                 path: '',
@@ -60,13 +68,18 @@ const routes: Routes = [
         DynamicComponent,
         LeetcodeComponent,
         FlatTreeComponent,
+        FormExampleComponent,
+        NewCustomerComponent,
+        CustomerNewListComponent,
         AnimationComponent
     ],
     imports: [
         CommonModule,
         MaterialModule,
         RouterModule.forChild(routes),
-        TranslateModule.forChild()
+        TranslateModule.forChild(),
+        FormsModule,
+        ReactiveFormsModule
     ],
     exports: [LayoutComponent]
 })

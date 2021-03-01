@@ -1,0 +1,15 @@
+.form-example {
+    >.mat-card{
+        width: 300px;
+    }
+    .form {
+        .form-item {
+            .mat-form-field{
+                width: 100%;
+            }
+            .mat-radio-button {
+                padding: 10px 10px 20px 0;
+            }
+        }
+    }
+}

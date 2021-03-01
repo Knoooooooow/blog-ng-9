@@ -13,7 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-
+import { MatRadioModule } from '@angular/material/radio';
 import {
     MatDialogModule,
     MAT_DIALOG_DEFAULT_OPTIONS
@@ -32,6 +32,7 @@ import {
         MatIconModule,
         MatListModule,
         MatInputModule,
+        MatRadioModule,
         MatTooltipModule,
         MatDialogModule,
         MatButtonModule,
@@ -49,6 +50,7 @@ import {
         MatIconModule,
         MatListModule,
         MatInputModule,
+        MatRadioModule,
         MatTooltipModule,
         MatDialogModule,
         MatButtonModule,

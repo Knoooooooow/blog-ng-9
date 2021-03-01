@@ -21,13 +21,13 @@ export class MainComponent implements OnInit, OnDestroy {
 
     private _onDestory = new Subject<boolean>();
 
+
     constructor(private engServ: EngineService, private audioService: AudioService) {
 
     }
 
 
     ngOnInit(): void {
-        this.engServ.hasActiveAudio = true;
         setTimeout(() => {
             this.engServ.createScene(this.rendererCanvas.nativeElement, this.canvasContainer.nativeElement);
             this.engServ.animate(this.canvasContainer.nativeElement);
@@ -38,7 +38,6 @@ export class MainComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.engServ.hasActiveAudio = false;
         this._onDestory.next(true);
         this._onDestory.complete();
     }

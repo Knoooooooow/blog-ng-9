@@ -31,8 +31,16 @@
                 "route": "tree"
             },
             {
-                "id": "app.sidebar.animation",
+                "id": "app.sidebar.form",
                 "order": 400,
+                "icon": "default",
+                "title": "APP.SIDEBAR_ROUTE.FORM",
+                "description": "APP.SIDEBAR_ROUTE.FORM",
+                "route": "form"
+            }
+            ,{
+                "id": "app.sidebar.animation",
+                "order": 500,
                 "icon": "default",
                 "title": "APP.SIDEBAR_ROUTE.ANIMATION",
                 "description": "APP.SIDEBAR_ROUTE.ANIMATION",
@@ -40,7 +48,7 @@
             },
             {
                 "id": "app.sidebar.leetcode",
-                "order": 500,
+                "order": 600,
                 "icon": "default",
                 "title": "APP.SIDEBAR_ROUTE.OTHER",
                 "description": "APP.SIDEBAR_ROUTE.OTHER",
